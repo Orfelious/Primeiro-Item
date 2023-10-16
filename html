@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riddle Page</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            color: #fff;
+            box-sizing: border-box;
+            border: 5vh solid #800080; /* Cor roxa para as bordas */
+            transition: background-color 0.5s;
+            flex-direction: column;
+        }
+
+        button {
+            font-size: 24px;
+            padding: 15px 30px;
+            margin-bottom: 20px;
+        }
+
+        #riddleContainer {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #inputBox {
+            padding: 15px;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #gifContainer {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #diarioText {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        #parabensText {
+            font-size: 24px;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        #finalGifContainer {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #finalMessage {
+            font-size: 24px;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<button id="trustMeBtn" onclick="showRiddle()">Trust Me</button>
+
+<div id="riddleContainer">
+    <p style="font-size: 32px;">Qual é o lugar onde as palavras cochicham entre estantes, onde as histórias sussurram e os conhecimentos se encontram em silêncio?</p>
+    <input type="text" id="inputBox" placeholder="Digite aqui">
+    <button onclick="checkAnswer()">Verificar Resposta</button>
+</div>
+
+<div id="gifContainer">
+    <p id="diarioText">Você encontrou o diário da adoradora de Caronte</p>
+    <img src="https://66.media.tumblr.com/tumblr_mcfqj603fq1rfjowdo1_500.gif" alt="Gif">
+    <p id="parabensText">Parabéns por encontrar sua primeira pista.</p>
+</div>
+
+<div id="finalGifContainer">
+    <img src="https://media.tenor.com/_q4eozeQrZIAAAAi/gore.gif" alt="Gif">
+    <p id="finalMessage">Você é o novo alvo.</p>
+</div>
+
+<script>
+    function showRiddle() {
+        document.getElementById('trustMeBtn').style.display = 'none';
+        document.getElementById('riddleContainer').style.display = 'block';
+    }
+
+    function checkAnswer() {
+        var resposta = document.getElementById('inputBox').value.toLowerCase();
+        
+        if (resposta === 'biblioteca') {
+            document.getElementById('riddleContainer').style.display = 'none';
+            document.body.style.border = 'none';
+
+            // Exibe o gif do diário
+            document.getElementById('gifContainer').style.display = 'block';
+
+            // Após 5 segundos, exibe o gif final
+            setTimeout(function() {
+                document.getElementById('gifContainer').style.display = 'none';
+                document.getElementById('finalGifContainer').style.display = 'block';
+                
+                // Exibe a mensagem após 3 segundos
+                setTimeout(function() {
+                    document.getElementById('finalMessage').innerText = 'Você é o novo alvo.';
+                }, 3000);
+
+                // Fecha a página após 3 segundos
+                setTimeout(function() {
+                    window.close();
+                }, 3000);
+            }, 5000);
+        } else {
+            alert('Resposta incorreta. A página será fechada.');
+            window.close();
+        }
+    }
+</script>
+
+</body>
+</html>
